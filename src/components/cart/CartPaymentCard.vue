@@ -2,9 +2,6 @@
   <div class="cart-total">
     <h3>Cart Total: {{ cart_total.toFixed(2) }}</h3>
     <button class="add-basket-button" @click="sendOrder(); $emit('add-basket', product)">Complete</button>
-    <div class="stock-error" v-if="err">
-      <p>Message: <br> <span>Diş Fırçası is {{ err }}</span> </p>
-    </div>
   </div>
 </template>
 
@@ -22,6 +19,9 @@ export default {
     clearCart() {
       this.$store.commit("clearCart", this.product);
     },
+    errorNotification() {
+      this.$toast.error(`${this.product.name} out of stock.`);
+    },
     async sendOrder() {
       const orderData = this.$store.state.cart;
       try {
@@ -31,9 +31,11 @@ export default {
         );
         if (response.data.status === "success") {
           this.clearCart();
+          this.$toast.success(`Order Received!`);
         }
       } catch (error) {
         this.err = error.response.data.message;
+        this.$toast.error(`Diş Fırçası ${error.response.data.message}`);
       }
     },
   },

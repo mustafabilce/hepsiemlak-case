@@ -1,15 +1,16 @@
 <template>
-  <div id="nav">
-    <router-link :class="{ active: $route.name === 'Home' }" to="/"
-      >Home</router-link
-    >
-    |
-    <router-link :class="{ active: $route.name === 'Cart' }" to="/cart"
-      >Cart</router-link
-    >
+    <div id="nav">
+    <router-link :class="{active: $route.name === 'Home'}" to="/">Home</router-link> |
+    <router-link :class="{active: $route.name === 'Cart'}" to="/cart">Cart <span class="product-quantity">{{ $store.state.cart.length }}</span> </router-link>
   </div>
-  <router-view />
+  <router-view/>
 </template>
+
+<script>
+
+export default {
+}
+</script>
 
 <style lang="scss">
 @media (min-width: 768px) {
@@ -39,8 +40,7 @@
   margin-left: auto;
   overflow-x: hidden;
 }
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -71,8 +71,8 @@ body {
     color: #fff;
     padding: 5px 8px;
     border-radius: 50%;
-    font-size: 0.7rem;
-    line-height: 0.7rem;
+    font-size: .7rem;
+    line-height: .7rem;
   }
 }
 .text-center {

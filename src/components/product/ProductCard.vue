@@ -13,6 +13,7 @@ export default {
   methods: {
     addToCart() {
       this.$store.commit("addToCart", this.product);
+      this.$toast.success(`${this.product.name} has been added to the cart.`);
     },
   },
   computed: {

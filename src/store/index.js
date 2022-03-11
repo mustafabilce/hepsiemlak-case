@@ -1,4 +1,4 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex"
 
 function updateLocalStorage(cart) {
   localStorage.setItem('cart', JSON.stringify(cart))

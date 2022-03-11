@@ -11,8 +11,7 @@
               :product="product"
             />
           </div>
-          <div v-else>
-            <h1>Order Received!</h1>
+          <div class="empty-cart" v-else>
             <h3>Your cart is empty.</h3>
             <p>
               <router-link :class="{ active: $route.name === 'Home' }" to="/"
@@ -58,9 +57,14 @@ export default {
 }
 .col-9 {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 75%;
-  flex: 0 0 75%;
-  max-width: 75%;
+  -ms-flex: 0 0 70%;
+  flex: 0 0 70%;
+  padding: 0 15px;
+  max-width: 70%;
+    .empty-cart {
+      background-color: #fff;
+      padding: 20px 0;
+    }
 }
 .col-3 {
   -webkit-box-flex: 0;
@@ -75,6 +79,8 @@ export default {
   }
   .col-9, .col-3 {
     max-width: 100%;
+    padding: 0 15px;
+    margin: 15px 0;
   }
 }
 </style>
