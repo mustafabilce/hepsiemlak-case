@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import config from '../config'
 import axios from "axios";
 import ProductCard from "../components/product/ProductCard.vue";
 
@@ -39,7 +40,7 @@ export default {
     getProducts() {
       this.loading = true;
       axios
-        .get("https://nonchalant-fang.glitch.me/listing")
+        .get(`${config.apiUrl}/listing`)
         .then((response) => (this.items = response.data))
         .catch((error) => {
           this.errors.push(error);

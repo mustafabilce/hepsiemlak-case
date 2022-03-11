@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import config from '../../config'
 import axios from "axios";
 
 export default {
@@ -26,7 +27,7 @@ export default {
       const orderData = this.$store.state.cart;
       try {
         const response = await axios.post(
-          "https://nonchalant-fang.glitch.me/order",
+          `${config.apiUrl}/order`,
           orderData
         );
         if (response.data.status === "success") {
