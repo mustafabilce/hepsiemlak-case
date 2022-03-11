@@ -1,11 +1,16 @@
 <template>
   <div class="home">
-    <div class="product-card-container">
-      <ProductCard
-        v-for="product in items"
-        :key="product.id"
-        :product="product"
-      />
+    <div class="spinner-box" v-if="loading">
+       <easy-spinner />
+    </div>
+    <div v-else>
+      <div class="product-card-container">
+        <ProductCard
+          v-for="product in items"
+          :key="product.id"
+          :product="product"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -19,25 +24,28 @@ export default {
   components: {
     ProductCard,
   },
-  async created() {
-    await this.getProducts();
-  },
   data() {
     return {
+      loading: false,
       items: [],
       errors: [],
       product: null,
     };
   },
+  async created() {
+    await this.getProducts();
+  },
   methods: {
     getProducts() {
+      this.loading = true;
       axios
         .get("https://nonchalant-fang.glitch.me/listing")
         .then((response) => (this.items = response.data))
         .catch((error) => {
           this.errors.push(error);
-        });
-    }
+        })
+        .finally(() => (this.loading = false));
+    },
   },
 };
 </script>
@@ -51,6 +59,17 @@ export default {
   grid-template-rows: 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
+}
+.spinner-box {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    svg {
+      width: 3em;
+      height: 3em;
+    }
 }
 @media (max-width: 768px) {
   .product-card-container {

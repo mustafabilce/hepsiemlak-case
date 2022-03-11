@@ -3,7 +3,15 @@
     <img :src="product.image" alt="" />
     <h3>{{ product.name }}</h3>
     <p class="description">{{ product.price }} {{ product.currency }}</p>
-    <button class="add-product-button" @click="addToCart(); $emit('add-basket', product)">Add Basket</button>
+    <button
+      class="add-product-button"
+      @click="
+        addToCart();
+        $emit('add-basket', product);
+      "
+    >
+      Add Basket
+    </button>
   </div>
 </template>
 
@@ -48,7 +56,6 @@ export default {
     color: gray;
   }
 }
-
 button.add-basket-button {
   padding: 10px 20px;
   background-color: rgb(255, 96, 0);
@@ -70,12 +77,13 @@ button.add-product-button {
   border-radius: 0.25rem;
   cursor: pointer;
   margin-left: 10px;
-  transition: .3s;
+  transition: 0.3s;
   &:hover {
-    background-color: rgba(255, 96, 0, .2);
+    background-color: rgba(255, 96, 0, 0.2);
     color: rgb(255, 96, 0);
   }
 }
+
 @media (max-width: 768px) {
   .card {
     margin-bottom: 15px;

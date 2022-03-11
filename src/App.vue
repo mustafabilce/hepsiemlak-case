@@ -67,7 +67,7 @@ body {
     }
   }
   .product-quantity {
-    background-color: #000;
+    background-color: rgb(255, 96, 0);
     color: #fff;
     padding: 5px 8px;
     border-radius: 50%;
